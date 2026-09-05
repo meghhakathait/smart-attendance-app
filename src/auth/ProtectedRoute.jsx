@@ -5,7 +5,7 @@ import { Navigate, useLocation } from "react-router";
 const ProtectedRoute = ({ children, role }) => {
   const { user } = useContext(AuthContext);
   let location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   if (!user) {
     return <Navigate to="/" />;

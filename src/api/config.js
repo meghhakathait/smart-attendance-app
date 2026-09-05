@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://smart-attendance-app-backend-77kh.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -13,14 +13,11 @@ api.interceptors.request.use((config) => {
     config.headers.set("Authorization", `Bearer ${token}`); //Agar token mila hai, tab request ke headers me token add karo.
   }
   return config; //Ye Axios ko bol raha hai:"Maine request ko modify/check kar liya. Ab isi request ko continue karke server ko bhejo."
-// Agar return config nahi karoge, interceptor request ko properly continue nahi karayega.
+  // Agar return config nahi karoge, interceptor request ko properly continue nahi karayega.
 });
 
 // Interceptor ka matlab hai: Request server ko bhejne se just pehle, us request ko check/modify karne ka chance.
 // So tum api.get() ya api.post() karogi → request actually server par jaane se pehle → interceptor chalega.
-
-
-
 
 // export const data = "hello";
 export default api;
