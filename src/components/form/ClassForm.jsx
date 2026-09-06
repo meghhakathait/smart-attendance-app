@@ -146,7 +146,7 @@ const ClassForm = ({ isUpdate, data, fetchClass, onClose }) => {
   return (
     <>
       <div className="">
-        <form className="py-4 p-4 max-h-120 overflow-auto">
+        <form className="py-4 p-4 ">
           <h2 className="text-xl font-semibold pb-4">
             {isUpdate ? "Update" : "Add"} Class
           </h2>
@@ -175,10 +175,7 @@ const ClassForm = ({ isUpdate, data, fetchClass, onClose }) => {
 
           <div className="flex flex-col ">
             {schedule.map((sched, i) => (
-              <div
-                key={i}
-                className="flex gap-3 items-center"
-              >
+              <div key={i} className="flex gap-3 items-center max-h-20 overflow-y-auto">
                 <select
                   value={sched.day}
                   // name="day"
@@ -210,7 +207,7 @@ const ClassForm = ({ isUpdate, data, fetchClass, onClose }) => {
                     }
                   />
                 </div>
-                
+
                 <div className=" flex  ">
                   <button
                     onClick={() => onClose(false)}
@@ -235,7 +232,7 @@ const ClassForm = ({ isUpdate, data, fetchClass, onClose }) => {
             )}
 
             {/* Select student to Add */}
-            <div className="py-5">
+            <div className="py-5 gap-2 flex">
               {studentList && (
                 <select
                   className=" "
@@ -243,6 +240,7 @@ const ClassForm = ({ isUpdate, data, fetchClass, onClose }) => {
                     setSelectedStudent(e.target.value);
                   }}
                 >
+                  <option value="">Select Student</option>
                   {studentList.map((student) => (
                     <option key={student._id} value={student._id}>
                       {student.name}
@@ -269,14 +267,18 @@ const ClassForm = ({ isUpdate, data, fetchClass, onClose }) => {
                     //multiple teachers nhi select kr skte isliye ese hi kr skte do parameter pass karege class id joki data k ander hai nd teacherId jo bhi teacher select karege uska to .value se aa jayegi
                   }}
                 >
-                  {teacherList.map(({_id, name}) => ( //ye confirm hona chahiye ki obj hi ayega kisi or datatype mai nhi
-                    <option key={_id} value={_id}>
-                      {name}
-                    </option>
-                  ))}
+                  <option value="">Select Teacher</option>
+                  {teacherList.map(
+                    (
+                      { _id, name }, //ye confirm hona chahiye ki obj hi ayega kisi or datatype mai nhi
+                    ) => (
+                      <option key={_id} value={_id}>
+                        {name}
+                      </option>
+                    ),
+                  )}
                 </select>
               )}
-
             </div>
           </div>
         </form>
