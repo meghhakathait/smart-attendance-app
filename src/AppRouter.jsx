@@ -62,7 +62,10 @@ Tum us root URL par koi bhi component dikha sakti ho*/}
         }
       >
         <Route index element={<TeacherDashboard />}></Route>
-        <Route path="/teacher/class/:classid/" element={<SingleClass />}></Route> 
+        <Route
+          path="/teacher/class/:classid/"
+          element={<SingleClass />}
+        ></Route>
         {/* humne decalre kr diya ek variable iska humne abhi value nhi di - :classid  to make url dynamic*/}
         <Route path="/teacher/classes" element={<Classes />}></Route>
         <Route path="/teacher/students" element={<Students />}></Route>
@@ -80,7 +83,14 @@ Tum us root URL par koi bhi component dikha sakti ho*/}
         <Route path="/student/mark" element={<MarkAttendance />}></Route>
         <Route path="/student/my-attendance" element={<MyAttendance />}></Route>
       </Route>
-
+      <Route
+        path="/attend/:token"
+        element={
+          <ProtectedRoute role="student">
+            <MarkAttendance />
+          </ProtectedRoute>
+        }
+      ></Route>
       <Route path="*" element={<PageNotFound />}></Route>
       {/* (*) ka matlab hota hai jo bhi route match na ho. */}
       {/* iske do main properties hoti hai also hum sb ekhi page mai kr skte the nd browser bhi idher hi use kr skte the */}
